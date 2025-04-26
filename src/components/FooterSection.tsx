@@ -29,7 +29,6 @@ const FooterSection = () => {
             <h4 className="font-semibold mb-4">Contact</h4>
             <ul className="space-y-2">
               <li className="text-gray-300">contact@socialaigent.com</li>
-              <li className="text-gray-300">+1 (555) 123-4567</li>
               <li className="flex space-x-4 pt-2">
                 <a href="#" className="text-gray-300 hover:text-white">
                   <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
@@ -64,3 +63,4 @@ const FooterSection = () => {
 };
 
 export default FooterSection;
+
