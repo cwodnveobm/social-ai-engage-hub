@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Check } from 'lucide-react';
@@ -9,7 +8,7 @@ import { useToast } from '@/components/ui/use-toast';
 const pricingPlans = [
   {
     name: "Basic",
-    price: 199,
+    price: 14999, // ₹14,999
     period: "month",
     description: "Perfect for small businesses just getting started with social automation.",
     features: [
@@ -25,7 +24,7 @@ const pricingPlans = [
   },
   {
     name: "Premium",
-    price: 999,
+    price: 74999, // ₹74,999
     period: "month",
     description: "Advanced automation for growing businesses with higher volume needs.",
     features: [
@@ -63,11 +62,10 @@ const PricingPlan = ({ plan, index }: { plan: typeof pricingPlans[0], index: num
   const { toast } = useToast();
   
   const handlePayment = (planId: string) => {
-    // Implement Razorpay payment
     const options = {
-      key: "rzp_live_5JYQnqKRnKhB5y", 
-      amount: plan.price ? plan.price * 100 : 0, // Razorpay takes amount in smallest currency unit
-      currency: "USD",
+      key: "rzp_live_5JYQnqKRnKhB5y",
+      amount: plan.price ? plan.price * 100, // Razorpay takes amount in paise
+      currency: "INR",
       name: "Social AI Agent",
       description: `${plan.name} Plan Subscription`,
       handler: function() {
@@ -113,7 +111,7 @@ const PricingPlan = ({ plan, index }: { plan: typeof pricingPlans[0], index: num
         <div className="mb-4">
           {plan.price ? (
             <div className="flex items-end">
-              <span className="text-3xl md:text-4xl font-bold text-charcoal">${plan.price}</span>
+              <span className="text-3xl md:text-4xl font-bold text-charcoal">₹{(plan.price).toLocaleString('en-IN')}</span>
               <span className="text-gray-500 ml-1">/{plan.period}</span>
             </div>
           ) : (
@@ -174,7 +172,6 @@ const PricingSection = () => {
         </div>
       </section>
       
-      {/* Add Razorpay script */}
       <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
     </>
   );
