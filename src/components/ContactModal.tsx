@@ -20,13 +20,15 @@ interface ContactModalProps {
   className?: string;
   variant?: "default" | "outline" | "secondary" | "ghost" | "link" | "destructive" | null | undefined;
   size?: "default" | "sm" | "lg" | "icon" | null | undefined;
+  onClick?: () => void; // Added the onClick prop
 }
 
 const ContactModal = ({
   buttonText = "Contact Us",
   className,
   variant = "default",
-  size
+  size,
+  onClick
 }: ContactModalProps) => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
@@ -57,10 +59,20 @@ const ContactModal = ({
     }, 1000);
   };
 
+  // Create a function to handle the button click that calls the provided onClick function
+  const handleButtonClick = () => {
+    if (onClick) onClick();
+  };
+
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
-        <Button variant={variant} size={size} className={className}>
+        <Button 
+          variant={variant} 
+          size={size} 
+          className={className}
+          onClick={handleButtonClick}
+        >
           {buttonText}
         </Button>
       </DialogTrigger>
