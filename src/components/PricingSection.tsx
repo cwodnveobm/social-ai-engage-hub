@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Check } from 'lucide-react';
@@ -9,7 +8,7 @@ import { useToast } from '@/components/ui/use-toast';
 const pricingPlans = [
   {
     name: "Basic",
-    price: 14999, // ₹14,999
+    price: 2999, // ₹2,999
     period: "month",
     description: "Perfect for small businesses just getting started with social automation.",
     features: [
@@ -25,7 +24,7 @@ const pricingPlans = [
   },
   {
     name: "Premium",
-    price: 74999, // ₹74,999
+    price: 4999, // ₹4,999
     period: "month",
     description: "Advanced automation for growing businesses with higher volume needs.",
     features: [
