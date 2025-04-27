@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Check } from 'lucide-react';
@@ -64,7 +65,7 @@ const PricingPlan = ({ plan, index }: { plan: typeof pricingPlans[0], index: num
   const handlePayment = (planId: string) => {
     const options = {
       key: "rzp_live_5JYQnqKRnKhB5y",
-      amount: plan.price ? plan.price * 100, // Razorpay takes amount in paise
+      amount: plan.price ? plan.price * 100 : 0, // Razorpay takes amount in paise
       currency: "INR",
       name: "Social AI Agent",
       description: `${plan.name} Plan Subscription`,
