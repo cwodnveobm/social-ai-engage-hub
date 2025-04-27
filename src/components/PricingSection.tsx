@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Check } from 'lucide-react';
@@ -15,7 +16,7 @@ const pricingPlans = [
       "Automated DM replies",
       "Comment monitoring",
       "Basic analytics",
-      "5 social accounts",
+      "1 social account", // Updated from 5 to 1
       "24/7 email support"
     ],
     highlighted: false,
@@ -31,7 +32,7 @@ const pricingPlans = [
       "Everything in Basic",
       "Advanced AI responses",
       "Content generation",
-      "Unlimited social accounts",
+      "4 social accounts", // Updated from Unlimited to 4
       "Priority support",
       "Custom integrations"
     ],
