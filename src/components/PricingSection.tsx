@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Check } from 'lucide-react';
@@ -82,9 +81,25 @@ const PricingPlan = ({ plan, index }: { plan: typeof pricingPlans[0], index: num
       theme: {
         color: "#2563eb",
       },
+      modal: {
+        confirm_close: true,
+        escape: true,
+        animation: true,
+        backdropClose: true,
+        handleback: true, // Handle back button press on mobile
+      },
     };
 
     const paymentObject = new (window as any).Razorpay(options);
+    
+    paymentObject.on('payment.failed', function(response: any) {
+      toast({
+        variant: "destructive",
+        title: "Payment Failed",
+        description: "Please try again or contact support if the issue persists.",
+      });
+    });
+
     paymentObject.open();
   };
 
@@ -166,7 +181,6 @@ const PricingPlan = ({ plan, index }: { plan: typeof pricingPlans[0], index: num
           )}
         </div>
         
-        {/* Add a subtle gradient orb in the background */}
         <div className="absolute -bottom-20 -right-20 w-40 h-40 bg-gradient-to-br from-blue-400/10 to-purple-400/10 rounded-full blur-xl" />
       </div>
     </motion.div>
@@ -176,7 +190,6 @@ const PricingPlan = ({ plan, index }: { plan: typeof pricingPlans[0], index: num
 const PricingSection = () => {
   return (
     <section id="pricing" className="section-padding relative overflow-hidden">
-      {/* Add decorative background elements */}
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute top-0 left-1/4 w-96 h-96 bg-blue-200/20 rounded-full mix-blend-multiply blur-3xl" />
         <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-purple-200/20 rounded-full mix-blend-multiply blur-3xl" />
