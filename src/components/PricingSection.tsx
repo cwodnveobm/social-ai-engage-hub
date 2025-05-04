@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+
+import React from 'react';
 import { motion } from 'framer-motion';
 import { Check } from 'lucide-react';
 import { Button } from "@/components/ui/button";
@@ -15,7 +16,7 @@ const pricingPlans = [
       "Automated DM replies",
       "Comment monitoring",
       "Basic analytics",
-      "1 social account", // Updated from 5 to 1
+      "1 social account",
       "24/7 email support"
     ],
     highlighted: false,
@@ -31,7 +32,7 @@ const pricingPlans = [
       "Everything in Basic",
       "Advanced AI responses",
       "Content generation",
-      "4 social accounts", // Updated from Unlimited to 4
+      "4 social accounts",
       "Priority support",
       "Custom integrations"
     ],
@@ -61,46 +62,11 @@ const pricingPlans = [
 const PricingPlan = ({ plan, index }: { plan: typeof pricingPlans[0], index: number }) => {
   const { toast } = useToast();
   
-  const handlePayment = (planId: string) => {
-    const options = {
-      key: "rzp_live_5JYQnqKRnKhB5y",
-      amount: plan.price ? plan.price * 100 : 0, // Razorpay takes amount in paise
-      currency: "INR",
-      name: "Social AI Agent",
-      description: `${plan.name} Plan Subscription`,
-      handler: function() {
-        toast({
-          title: "Payment Successful!",
-          description: "Your subscription has been activated.",
-        });
-      },
-      prefill: {
-        name: "",
-        email: "",
-      },
-      theme: {
-        color: "#2563eb",
-      },
-      modal: {
-        confirm_close: true,
-        escape: true,
-        animation: true,
-        backdropClose: true,
-        handleback: true, // Handle back button press on mobile
-      },
-    };
-
-    const paymentObject = new (window as any).Razorpay(options);
-    
-    paymentObject.on('payment.failed', function(response: any) {
-      toast({
-        variant: "destructive",
-        title: "Payment Failed",
-        description: "Please try again or contact support if the issue persists.",
-      });
+  const handleSubscribeClick = () => {
+    toast({
+      title: "Subscription Request Received",
+      description: "Thank you for your interest! We'll contact you shortly.",
     });
-
-    paymentObject.open();
   };
 
   return (
@@ -174,7 +140,7 @@ const PricingPlan = ({ plan, index }: { plan: typeof pricingPlans[0], index: num
                   ? "bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700" 
                   : "hover:bg-gradient-to-r hover:from-blue-600 hover:to-purple-600 hover:text-white"
               }`}
-              onClick={() => handlePayment(plan.planId)}
+              onClick={handleSubscribeClick}
             >
               {plan.buttonText}
             </Button>
